@@ -35,4 +35,20 @@ def codificar(imagenes):
     return lista_codificada
 
 lista_empleados_codificada = codificar(mis_imagenes)
-print(len(lista_empleados_codificada))
+
+# Tomar una imagen de camara web 
+captura = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+# Leer imagen de la camara
+exito, imagen = captura.read()
+
+if not exito:
+    print("No se ha podido tomar la captura")
+else:
+    # Reconocer cara en captura
+    cara_captura = fr.face_locations(imagen)
+    
+    # codificar la cara que ah capturado
+    cara_captura_codificada = fr.face_encodings(imagen, cara_captura)
+    
+    # buscar coincidencias
