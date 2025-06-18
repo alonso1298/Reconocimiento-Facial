@@ -9,6 +9,10 @@ foto_prueba = fr.load_image_file('FotoB.jpg')
 foto_control = cv2.cvtColor(foto_control, cv2.COLOR_BGR2RGB)
 foto_prueba = cv2.cvtColor(foto_prueba, cv2.COLOR_BGR2RGB)
 
+# Localizar cara control
+lugar_cara_A = fr.face_locations(foto_control)[0]
+cara_codificada_A = fr.face_encodings(foto_control)[0]
+
 # Mostrar imagenes
 cv2.imshow('Foto Control', foto_control)
 cv2.imshow('Foto Prueba', foto_prueba)
