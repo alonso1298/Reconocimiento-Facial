@@ -13,6 +13,13 @@ foto_prueba = cv2.cvtColor(foto_prueba, cv2.COLOR_BGR2RGB)
 lugar_cara_A = fr.face_locations(foto_control)[0]
 cara_codificada_A = fr.face_encodings(foto_control)[0]
 
+# mostrar rectangulo
+cv2.rectangle(foto_control,
+              (lugar_cara_A[3], lugar_cara_A[0]),
+              (lugar_cara_A[1], lugar_cara_A[2]),
+              (0, 255 ,0),
+              2)
+
 # Mostrar imagenes
 cv2.imshow('Foto Control', foto_control)
 cv2.imshow('Foto Prueba', foto_prueba)
