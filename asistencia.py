@@ -2,6 +2,8 @@ import cv2
 import face_recognition as fr
 import os
 
+import numpy
+
 # Crear base de datos 
 ruta = 'Empleados'
 mis_imagenes = []
@@ -26,7 +28,7 @@ def codificar(imagenes):
         imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB)
         
         # Codificar
-        codificado = fr.face_encodings(imagen[0])
+        codificado = fr.face_encodings(imagen)[0]
         
         # Agregar a la lista
         lista_codificada.append(codificado)
@@ -52,3 +54,16 @@ else:
     cara_captura_codificada = fr.face_encodings(imagen, cara_captura)
     
     # buscar coincidencias
+    for caracodif, caraubic in zip(cara_captura_codificada, cara_captura):
+        coincidencias = fr.compare_faces(lista_empleados_codificada, caracodif)
+        distancias = fr.face_distance(lista_empleados_codificada, caracodif)
+        
+        print(distancias)
+        
+        indice_coincidencia = numpy.argmin(distancias)
+        
+        # Mostrar con coincidencias si las hay
+        if distancias[indice_coincidencia] > 0.6:
+            print("No coincide co ninguno de nuestros empleados")
+        else:
+            print("Beinvenido al trabajo")
