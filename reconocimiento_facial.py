@@ -38,5 +38,10 @@ print(resultado)
 cv2.imshow('Foto Control', foto_control)
 cv2.imshow('Foto Prueba', foto_prueba)
 
+# medida de la distancia 
+distancia = fr.face_distance([cara_codificada_A], cara_codificada_B)
+
+print(distancia)
+
 # Mantener el programa abierto 
 cv2.waitKey(0)
